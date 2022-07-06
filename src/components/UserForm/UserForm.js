@@ -16,7 +16,7 @@ const UserForm = () => {
 
   return (
     <Form
-      className="user-form"
+      className="wrapper"
       name="basic"
       labelCol={{
         span: 8,
