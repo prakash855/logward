@@ -1,0 +1,24 @@
+.details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.caption {
+  text-align: left;
+}
+
+.delete {
+  position: absolute;
+  right: -0.6rem;
+  top: 50%;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  color: white;
+  background: black;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
