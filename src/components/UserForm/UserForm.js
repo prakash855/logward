@@ -1,17 +1,30 @@
-import { Button, Checkbox, Form, Input } from "antd";
-import React from "react";
+import { Button, Form, Input } from "antd";
+import { v4 as uuidv4 } from "uuid";
 import "antd/dist/antd.css";
 import "./UserForm.css";
+import { dateAndTime } from "../../utils";
+import { useData } from "../../contexts/user-context";
 
 const { TextArea } = Input;
 
-const UserForm = () => {
+const UserForm = ({ type, name }) => {
+  const { post, setPost, setPosts } = useData();
+
   const onFinish = (values) => {
     console.log("Success:", values);
+    setPosts((posts) => [
+      ...posts,
+      { id: uuidv4(), ...values, createdAt: dateAndTime(new Date()) },
+    ]);
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
+  };
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setPost({ [name]: value });
   };
 
   return (
@@ -28,7 +41,7 @@ const UserForm = () => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-      <h4 className="form-head">Comment</h4>
+      <h4 className="form-head">{type}</h4>
       <Form.Item
         name="name"
         rules={[
@@ -38,7 +51,12 @@ const UserForm = () => {
           },
         ]}
       >
-        <Input placeholder="Name" />
+        <Input
+          onChange={(e) => onChangeHandler(e)}
+          value={post.name}
+          name="field"
+          placeholder={name}
+        />
       </Form.Item>
 
       <Form.Item
@@ -50,7 +68,13 @@ const UserForm = () => {
           },
         ]}
       >
-        <TextArea rows={2} placeholder="Comment" />
+        <TextArea
+          onChange={(e) => onChangeHandler(e)}
+          value={post.comment}
+          name="field"
+          rows={2}
+          placeholder={type}
+        />
       </Form.Item>
 
       <Form.Item
