@@ -1,7 +1,6 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import React from "react";
-import { useState } from "react";
 import { useData } from "../../contexts/user-context";
 import UserForm from "../UserForm/UserForm";
 import "./Post.css";

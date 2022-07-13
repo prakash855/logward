@@ -1,6 +1,6 @@
 import { Button, Form, Input } from "antd";
 import { v4 as uuidv4 } from "uuid";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import "./UserForm.css";
 import { dateAndTime } from "../../utils";
 import { useData } from "../../contexts/user-context";
